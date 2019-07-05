@@ -1,0 +1,27 @@
+{
+    "name": "tobymaxham/phoenixii-oauth2",
+    "description": "A Package to use the OAuth2 API from PhoenixII.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TobyMaxham",
+            "email": "git2019@maxham.de",
+            "homepage": "https://maxham.de",
+            "role": "Development"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TobyMaxham\\PhoenixAuth\\": "src"
+        }
+    },
+    "require": {
+        "php": ">7.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "phpunit/phpunit": "^8.2"
+    }
+}
