@@ -5,6 +5,7 @@ namespace TobyMaxham\PhoenixAuth;
 use Exception;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ServerException;
+use TobyMaxham\PhoenixAuth\Support\Helper;
 
 /**
  * @author Tobias Maxham <git2019@maxham.de>
@@ -102,15 +103,17 @@ class AuthProvider
         'Authorization' => 'Bearer '.$this->getBearerToken(),
         'Accept'        => 'application/json',
     ];
+        $options = Helper::except($params, ['grant_type', 'client_id', 'client_secret']);
+        $jsonBody = array_merge($options, [
+            'grant_type'    => 'authorization_code',
+            'client_id'     => $this->client_id,
+            'client_secret' => $this->client_secret,
+        ]);
+
         try {
             $response = $this->client()->request('POST', $this->base_uri.'/access_token', [
                 'headers' => $headers,
-                'json'    => [
-                    'grant_type'    => 'authorization_code',
-                    'client_id'     => $this->client_id,
-                    'client_secret' => $this->client_secret,
-                    'code'          => $params['code'],
-                ],
+                'json'    => $jsonBody,
             ]);
             $jsonResponse = json_decode($response->getBody());
         } catch (ServerException $exception) {
