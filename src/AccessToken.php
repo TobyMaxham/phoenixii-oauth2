@@ -6,7 +6,7 @@ use stdClass;
 use TobyMaxham\PhoenixAuth\Resource\PhoenixResource;
 
 /**
- * @author Tobias Maxham <git2019@maxham.de>
+ * @author Tobias Maxham <git@maxham.de>
  */
 class AccessToken
 {

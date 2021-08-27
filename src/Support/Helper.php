@@ -3,7 +3,7 @@
 namespace TobyMaxham\PhoenixAuth\Support;
 
 /**
- * @author Tobias Maxham <git2019@maxham.de>
+ * @author Tobias Maxham <git@maxham.de>
  */
 class Helper
 {

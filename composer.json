@@ -5,7 +5,7 @@
     "authors": [
         {
             "name": "TobyMaxham",
-            "email": "git2019@maxham.de",
+            "email": "git@maxham.de",
             "homepage": "https://maxham.de",
             "role": "Development"
         }
@@ -16,12 +16,12 @@
         }
     },
     "require": {
-        "php": ">7.0",
+        "php": ">7.4",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^8.2",
+        "friendsofphp/php-cs-fixer": "^3.0"
     }
 }

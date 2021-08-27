@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\ServerException;
 use TobyMaxham\PhoenixAuth\Support\Helper;
 
 /**
- * @author Tobias Maxham <git2019@maxham.de>
+ * @author Tobias Maxham <git@maxham.de>
  */
 class AuthProvider
 {
@@ -35,8 +35,6 @@ class AuthProvider
     /**
      * @param null $state
      * @param null $redirect_uri
-     *
-     * @return string
      */
     public function getAuthorizationUrl($state = null, $redirect_uri = null): string
     {
@@ -51,9 +49,6 @@ class AuthProvider
         return $url;
     }
 
-    /**
-     * @return HttpClient
-     */
     public function client(): HttpClient
     {
         return $this->http_client;
@@ -82,11 +77,7 @@ class AuthProvider
     }
 
     /**
-     * @param string $grant
-     *
      * @throws Exception
-     *
-     * @return string
      */
     private function verifyGrant(string $grant): string
     {

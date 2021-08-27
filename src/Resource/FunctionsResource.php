@@ -3,7 +3,7 @@
 namespace TobyMaxham\PhoenixAuth\Resource;
 
 /**
- * @author Tobias Maxham <git2019@maxham.de>
+ * @author Tobias Maxham <git@maxham.de>
  */
 class FunctionsResource extends PhoenixResource
 {

@@ -5,14 +5,14 @@ namespace TobyMaxham\PhoenixAuth\Resource;
 /**
  * @author Tobias Maxham <git@maxham.de>
  */
-class LicensesResource extends PhoenixResource
+class CommunicationsResource extends PhoenixResource
 {
     public function data(): array
     {
-        if (! isset($this->data->licenses)) {
+        if (! isset($this->data->communications)) {
             return [];
         }
 
-        return $this->data->licenses;
+        return $this->data->communications;
     }
 }

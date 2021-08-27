@@ -5,7 +5,7 @@ namespace TobyMaxham\PhoenixAuth\Resource;
 use stdClass;
 
 /**
- * @author Tobias Maxham <git2019@maxham.de>
+ * @author Tobias Maxham <git@maxham.de>
  */
 abstract class PhoenixResource
 {
