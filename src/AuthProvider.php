@@ -12,30 +12,17 @@ use TobyMaxham\PhoenixAuth\Support\Helper;
  */
 class AuthProvider
 {
-    private $client_id;
-    private $client_secret;
     private $redirect_uri;
-    private $bearer_token;
     private $base_uri;
 
-    /**
-     * @var HttpClient
-     */
-    protected $http_client;
+    protected \GuzzleHttp\Client $http_client;
 
-    public function __construct($base_uri, $client_id, $client_secret, $bearer_token)
+    public function __construct($base_uri, private $client_id, private $client_secret, private $bearer_token)
     {
-        $this->client_id = $client_id;
-        $this->client_secret = $client_secret;
-        $this->bearer_token = $bearer_token;
         $this->http_client = new HttpClient(['base_uri' => $base_uri]);
         $this->base_uri = $base_uri;
     }
 
-    /**
-     * @param null $state
-     * @param null $redirect_uri
-     */
     public function getAuthorizationUrl($state = null, $redirect_uri = null): string
     {
         $url = $this->base_uri."/authorize?client_id={$this->client_id}&response_type=code";
@@ -56,12 +43,12 @@ class AuthProvider
 
     public function getAccessToken($grant, array $options = []): AccessToken
     {
-        $grant = $this->verifyGrant($grant);
+        $this->verifyGrant($grant);
 
         $params = [
             'client_id'     => $this->client_id,
             'client_secret' => $this->client_secret,
-            'redirect_uri'  => isset($options['redirect_uri']) ? $options['redirect_uri'] : $this->redirect_uri,
+            'redirect_uri'  => $options['redirect_uri'] ?? $this->redirect_uri,
         ];
 
         $params = $this->prepareRequestParameters($params, $options);
@@ -81,7 +68,7 @@ class AuthProvider
      */
     private function verifyGrant(string $grant): string
     {
-        if ('authorization_code' != $grant) {
+        if ('authorization_code' !== $grant) {
             throw new Exception('Invalid grant_type');
         }
 

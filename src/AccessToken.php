@@ -13,7 +13,7 @@ class AccessToken
     protected $refresh_token;
     protected $access_token;
     protected $expires_in;
-    protected $user_data;
+    protected \stdClass $user_data;
 
     public function __construct(stdClass $data)
     {
@@ -35,7 +35,7 @@ class AccessToken
 
     public function getResource($type): PhoenixResource
     {
-        $class = ucfirst(strtolower($type)).'Resource';
+        $class = ucfirst(strtolower((string) $type)).'Resource';
         $class = 'TobyMaxham\\PhoenixAuth\\Resource\\'.$class;
 
         return new $class($this->user_data);

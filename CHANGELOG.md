@@ -2,6 +2,11 @@
 
 All notable changes to `phoenixii-oauth2` will be documented in this file.
 
+## 3.0 - 2024-08-08
+
+- PHP >8.2 update
+- CS-Fixer update
+
 ## 2.0.1 - 2021-12-19
 
 - added this changelog file

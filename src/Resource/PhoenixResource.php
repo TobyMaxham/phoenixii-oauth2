@@ -9,11 +9,8 @@ use stdClass;
  */
 abstract class PhoenixResource
 {
-    protected $data;
-
-    public function __construct(stdClass $data)
+    public function __construct(protected stdClass $data)
     {
-        $this->data = $data;
     }
 
     abstract public function data(): array;

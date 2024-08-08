@@ -16,12 +16,12 @@ class Helper
 
         $original = &$array;
 
-        if (0 === count($keys)) {
+        if ([] === $keys) {
             return $array;
         }
 
         foreach ($keys as $key) {
-            $parts = explode('.', $key);
+            $parts = explode('.', (string) $key);
 
             while (count($parts) > 1) {
                 $part = array_shift($parts);

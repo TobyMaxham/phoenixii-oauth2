@@ -3,7 +3,7 @@
 use TobyMaxham\PhoenixAuth\AccessToken;
 use TobyMaxham\PhoenixAuth\AuthProvider;
 
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $bearer_token = '';
 $client_id = '';
@@ -21,27 +21,27 @@ $client = new AuthProvider($baseUrl, $client_id, $client_secret, $bearer_token);
 
 if (! isset($_GET['state'])) {
     echo '<button onclick="window.location.href=\''.$client->getAuthorizationUrl($_SESSION['state'], $redirectURL).'\'">Login/Register with PhoenixII</button>';
-    exit();
+    exit;
 }
 
 // validate state
 if ($_GET['state'] != $_SESSION['state']) {
     echo 'Invalid Request. Try again.';
-    exit();
+    exit;
 }
 
 // validate user has denied
-if (isset($_GET['error']) && !empty($_GET['error'])) {
+if (isset($_GET['error']) && ! empty($_GET['error'])) {
     echo 'User has denied. Try again.';
-    echo '<br>Error: '. $_GET['error'];
-    exit();
+    echo '<br>Error: '.$_GET['error'];
+    exit;
 }
 
 echo '<pre>';
 
 /** @var AccessToken $token */
 $token = $client->getAccessToken('authorization_code', [
-    'code'         => urldecode($_GET['code']),
+    'code'         => urldecode((string) $_GET['code']),
     'redirect_uri' => $redirectURL,
 ]);
 
@@ -67,4 +67,3 @@ echo '<br>';
 
 echo 'addresses:<br>';
 var_dump($token->getResource('addresses')->data());
-
